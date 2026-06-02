@@ -1,1 +1,95 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Friends Poker Multiplayer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <section id="joinScreen" class="join-screen">
+      <div class="join-card">
+        <h1>Friends Poker</h1>
+        <p>Найзуудтайгаа нэг өрөөнд 2-6 хүн Texas Hold'em тоглоорой.</p>
 
+        <label for="playerName">Таны нэр</label>
+        <input id="playerName" type="text" maxlength="16" placeholder="Жишээ: Bataа" />
+
+        <label for="roomCode">Өрөөний код</label>
+        <input id="roomCode" type="text" maxlength="12" placeholder="Жишээ: POKER123" />
+
+        <button id="joinBtn">Өрөөнд орох</button>
+
+        <div id="joinError" class="error"></div>
+      </div>
+    </section>
+
+    <section id="gameScreen" class="game-screen hidden">
+      <section class="topbar">
+        <div>
+          <h1>Friends Poker</h1>
+          <p>
+            Өрөө: <strong id="roomCodeText">-</strong>
+            <span class="separator">|</span>
+            Stage: <strong id="stageText">-</strong>
+          </p>
+        </div>
+
+        <button id="startHandBtn" class="primary-btn">Шинэ гар эхлүүлэх</button>
+      </section>
+
+      <section class="table-wrap">
+        <div class="poker-table">
+          <div class="pot-box">
+            <span>Pot</span>
+            <strong id="potAmount">0</strong>
+          </div>
+
+          <div class="community" id="communityCards"></div>
+
+          <div class="table-message" id="tableMessage">
+            Тоглогчид хүлээж байна
+          </div>
+
+          <div class="dealer-chip" id="dealerChip">D</div>
+
+          <div class="seat seat-1" data-seat="0"></div>
+          <div class="seat seat-2" data-seat="1"></div>
+          <div class="seat seat-3" data-seat="2"></div>
+          <div class="seat seat-4" data-seat="3"></div>
+          <div class="seat seat-5" data-seat="4"></div>
+          <div class="seat seat-6" data-seat="5"></div>
+        </div>
+      </section>
+
+      <section class="controls">
+        <div class="current-player">
+          Ээлж: <strong id="currentPlayerName">-</strong>
+        </div>
+
+        <div class="bet-control">
+          <label for="raiseAmount">Raise to</label>
+          <input id="raiseAmount" type="number" min="20" step="10" value="100" />
+        </div>
+
+        <div class="actions">
+          <button id="checkBtn">Check</button>
+          <button id="callBtn">Call</button>
+          <button id="raiseBtn">Raise</button>
+          <button id="foldBtn" class="danger">Fold</button>
+          <button id="allInBtn" class="warning">All In</button>
+        </div>
+      </section>
+
+      <section class="log">
+        <h2>Action log</h2>
+        <div id="actionLog"></div>
+      </section>
+    </section>
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="client.js"></script>
+</body>
+</html>
